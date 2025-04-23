@@ -8,7 +8,7 @@ import {Box, Button, FormControl, InputLabel, MenuItem, Select} from '@mui/mater
 function BaseMap({children}: {children: React.ReactNode}) {
 
 	const [mapBackground, setMapBackground] = useState(true);
-	const [markers, setMarkers] = useState<string[]>(['origin', 'cache', 'ospool']);
+	const [markers, setMarkers] = useState<string[]>(['origin', 'cache', 'ospool', 'storage']);
 
 	return (
 			<>
@@ -46,6 +46,7 @@ function BaseMap({children}: {children: React.ReactNode}) {
 								<MenuItem value={"cache"}>Cache</MenuItem>
 								<MenuItem value={"ospool"}>OSPool</MenuItem>
 								<MenuItem value={"origin"}>Origin</MenuItem>
+								<MenuItem value={"storage"}>Storage</MenuItem>
 							</Select>
 						</FormControl>
 					</Box>

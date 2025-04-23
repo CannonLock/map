@@ -9,9 +9,10 @@ interface DefaultPageProps {
 	ospoolMarkers: MarkerProps[]
 	cacheMarkers: MarkerProps[]
 	originMarkers: MarkerProps[]
+	storageMarkers: MarkerProps[]
 }
 
-function DefaultPage({originMarkers, cacheMarkers, ospoolMarkers}: DefaultPageProps) {
+function DefaultPage({originMarkers, cacheMarkers, ospoolMarkers, storageMarkers}: DefaultPageProps) {
 
 	const markers = useContext(MarkerContext);
 	const [displayMarkers, setDisplayMarkers] = useState<MarkerProps[]>([])
@@ -30,6 +31,10 @@ function DefaultPage({originMarkers, cacheMarkers, ospoolMarkers}: DefaultPagePr
 
 			if (markers.includes('ospool')) {
 				displayMarkers = [...displayMarkers, ...ospoolMarkers]
+			}
+
+			if (markers.includes('storage')) {
+				displayMarkers = [...displayMarkers, ...storageMarkers]
 			}
 
 			setDisplayMarkers(displayMarkers)

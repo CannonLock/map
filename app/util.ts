@@ -87,6 +87,19 @@ const resourceGroupsToSites = async (resourceGroups: ResourceGroup[]): Promise<L
  * The meat of the file
  */
 
+
+export const getOSDFStorageInstitutions = async () => {
+	const s3StorageLocations: LatLong[] = [
+		{ latitude: 40.0177064535727, longitude: -105.27273175578432 },
+		{ latitude: 29.75646754188935, longitude: -95.36541967712513 },
+		{ latitude: 38.66574439687952, longitude: -77.71508848490011 },
+		{ latitude: 44.508813879524006, longitude: -121.32246448252789 },
+		{ latitude: 44.508813879524006, longitude: -121.32246448252789 }
+	];
+
+	return [...(await getOSDFOriginInstitutions()), ...s3StorageLocations]
+}
+
 export const getOSDFCacheInstitutions = async () => {
 	const resourceGroups = await getResourceGroups()
 

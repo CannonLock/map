@@ -75,7 +75,7 @@ jobs:
 
       - name: Build with Next.js
         run: |
-          yarn run export
+          npm run build
           find ./out | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"
         
 

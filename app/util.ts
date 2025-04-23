@@ -5,11 +5,11 @@ const getInstitutions = async (): Promise<Record<string, Institution>> => {
 	if (!response.ok) {
 		throw new Error('Failed to fetch institutions');
 	}
-	const data = await response.json();
-	const dataById = data.reduce((acc: Record<string, string>, institution: any) => {
+	const data = await response.json() as Institution[];
+	const dataById = data.reduce((acc, institution) => {
 		acc[institution.id] = institution;
 		return acc;
-	}, {});
+	}, {} as Record<string, Institution>);
 	return dataById;
 }
 
@@ -57,7 +57,7 @@ const doesResourceGroupsHaveOSDFOrigin = (resourceGroup: ResourceGroup) => {
 
 }
 
-const resourceGroupsToInstitutions = async (resourceGroups: ResourceGroup[]) => {
+export const resourceGroupsToInstitutions = async (resourceGroups: ResourceGroup[]) => {
 	const institutions = await getInstitutions()
 
 	const institutionIds = resourceGroups.map(resourceGroup => {

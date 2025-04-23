@@ -1,4 +1,4 @@
-import {SvgIconTypeMap} from "@mui/material";
+import {ReactElement} from "react";
 
 export type ResourceContact = {
 	CILogonID: string | null;
@@ -97,7 +97,7 @@ export type MarkerProps = {
 	offset: [number, number];
 	latitude: number;
 	longitude: number;
-	icon: any;
+	icon: ReactElement;
 	id: string;
 	color: string;
 }

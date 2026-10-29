@@ -106,3 +106,31 @@ export type LatLong = {
 	latitude: number;
 	longitude: number;
 }
+
+export type DirectorServer = {
+	name: string;
+	url: string;
+	webUrl: string;
+	type: 'Origin' | 'Cache';
+	latitude: number;
+	longitude: number;
+	healthStatus: string;
+	serverStatus: string;
+	version: string;
+	ioLoad: number;
+	filtered: boolean;
+	filteredType: string;
+	namespacePrefixes: string[];
+}
+
+export type GridCell = {
+	point: LatLong;
+	// The part of the globe closest to this point, as an unwrapped [longitude, latitude] ring
+	cell: [number, number][];
+	areaKm2: number;
+}
+
+export type CacheSelection = GridCell & {
+	// The director's choices in priority order, null where the host isn't a known cache
+	caches: (DirectorServer | null)[];
+}

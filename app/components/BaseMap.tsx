@@ -4,16 +4,22 @@ import Map from "react-map-gl/mapbox"
 import {useState, createContext} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {Box, Button, FormControl, InputLabel, MenuItem, Select} from '@mui/material';
+import {usePathname} from "next/navigation";
+
+// Pages that bring their own controls instead of the background and marker pickers
+const PAGES_WITHOUT_CONTROLS = ['/cache-selection']
 
 function BaseMap({children}: {children: React.ReactNode}) {
 
 	const [mapBackground, setMapBackground] = useState(true);
 	const [markers, setMarkers] = useState<string[]>(['origin', 'cache', 'ospool', 'storage']);
+	const pathname = usePathname();
+	const showControls = !PAGES_WITHOUT_CONTROLS.some(page => pathname.startsWith(page));
 
 	return (
 			<>
 				<MarkerContext.Provider value={markers}>
-					<Box component={'div'} style={{
+					{showControls && <Box component={'div'} style={{
 						position: 'absolute',
 						top: 0,
 						left: 0,
@@ -49,7 +55,7 @@ function BaseMap({children}: {children: React.ReactNode}) {
 								<MenuItem value={"storage"}>Storage</MenuItem>
 							</Select>
 						</FormControl>
-					</Box>
+					</Box>}
 					<Map
 						mapboxAccessToken="pk.eyJ1IjoiY2Fubm9uLWxvY2siLCJhIjoiY2xqNmpla2dqMGpmZTNxbnY2M210c2RwcCJ9.b1Z-x0y2urZLAFp8Sv0-wQ"
 						initialViewState={{
